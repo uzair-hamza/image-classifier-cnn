@@ -84,18 +84,19 @@ Prints the predicted class and the top-3 probabilities.
 
 ## My results
 
-Trained for 5 epochs on CIFAR-10 (50,000 training images, batch size 32,
+Trained for 20 epochs on CIFAR-10 (50,000 training images, batch size 32,
 Adam optimizer, data augmentation on):
 
-- Test accuracy: **61.49%** (10,000 test images)
-- Weighted precision: 0.63, recall: 0.61, F1-score: 0.60
+- Test accuracy: **72.16%** (10,000 test images)
+- Weighted precision: 0.73, recall: 0.72, F1-score: 0.72
 - Training curves: `results/history.png`
 - Confusion matrix: `results/confusion_matrix.png`
 
-Notes: accuracy improves with more epochs and tuning — this run used a
-small CNN and only 5 epochs. The trained model file (`results/cnn_model.keras`)
-is not committed; run `train.py` to recreate it, then `predict.py` works on
-any image.
+Notes: the first 5-epoch run reached only 61.49% — training longer (20 epochs)
+raised accuracy by over 10 points. More epochs, a deeper network, or transfer
+learning would push it higher still. The trained model file
+(`results/cnn_model.keras`) is not committed; run `train.py` to recreate it,
+then `predict.py` works on any image.
 
 ## Next ideas
 
