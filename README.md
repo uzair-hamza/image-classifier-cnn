@@ -84,6 +84,8 @@ Prints the predicted class and the top-3 probabilities.
 
 ## My results
 
+### First model (v1)
+
 Trained for 20 epochs on CIFAR-10 (50,000 training images, batch size 32,
 Adam optimizer, data augmentation on):
 
@@ -93,10 +95,35 @@ Adam optimizer, data augmentation on):
 - Confusion matrix: `results/confusion_matrix.png`
 
 Notes: the first 5-epoch run reached only 61.49% — training longer (20 epochs)
-raised accuracy by over 10 points. More epochs, a deeper network, or transfer
-learning would push it higher still. The trained model file
+raised accuracy by over 10 points. The trained model file
 (`results/cnn_model.keras`) is not committed; run `train.py` to recreate it,
 then `predict.py` works on any image.
+
+### Improved model (v2) — best result so far
+
+Changes over v1 (still built from scratch, no pretrained weights):
+BatchNormalization after every convolution, batch size 64, cosine-decay
+learning-rate schedule (Adam, initial lr 1e-3), and slightly stronger
+augmentation (horizontal flips, 0.1 shifts, rotations up to ~18 degrees).
+
+The run was planned for 50 epochs but was cut short at epoch 47 of 50 by a
+runtime restart — training was not restarted. The best checkpoint, saved at
+epoch 43 (`results/cnn_model_v2.keras`), was evaluated with
+`src/evaluate_v2.py` on the same 10,000 CIFAR-10 test images:
+
+- Test accuracy: **76.24%** (10,000 test images) — up 4.08 points from 72.16%
+- Weighted precision: 0.77, recall: 0.76, F1-score: 0.76
+- Confusion matrix: `results/confusion_matrix_v2.png`
+- Evaluation log: `eval_v2.log`
+
+Honest caveat: the v2 training script used the CIFAR-10 test set as its
+validation set, so the best checkpoint was selected on the same test set it
+was then evaluated on — 76.24% is therefore not a fully held-out figure.
+It is measured on the same 10,000 test images as the earlier runs, so the
+comparison with 72.16% is like-for-like. Training curves
+(`results/history_v2.png`) were not produced because the run was interrupted
+before they could be saved. The v2 model file is not committed either; run
+`src/train_v2.py` to recreate it.
 
 ## Next ideas
 
