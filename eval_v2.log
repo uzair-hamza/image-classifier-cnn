@@ -1,0 +1,31 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1792867765.014561    1799 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1792867765.015643    1799 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+I0000 00:00:1792867766.572744    1799 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1792867771.848347    1799 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1792867771.849183    1799 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+Test: (10000, 32, 32, 3)
+E0000 00:00:1792867779.282566    1799 cuda_platform.cc:52] failed call to cuInit: INTERNAL: CUDA error: Failed call to cuInit: UNKNOWN ERROR (303)
+Test accuracy: 0.7624 (76.24%)
+
+              precision    recall  f1-score   support
+
+    airplane       0.78      0.83      0.81      1000
+  automobile       0.90      0.91      0.90      1000
+        bird       0.75      0.55      0.64      1000
+         cat       0.60      0.55      0.57      1000
+        deer       0.76      0.67      0.72      1000
+         dog       0.76      0.55      0.64      1000
+        frog       0.61      0.93      0.74      1000
+       horse       0.79      0.85      0.82      1000
+        ship       0.93      0.85      0.89      1000
+       truck       0.82      0.92      0.86      1000
+
+    accuracy                           0.76     10000
+   macro avg       0.77      0.76      0.76     10000
+weighted avg       0.77      0.76      0.76     10000
+
+Saved confusion matrix to /home/hatch/workspace/github-projects/image-classifier-cnn/src/../results
+EXIT_CODE=0
